@@ -12,7 +12,7 @@ function getData() {
     console.log(document.getElementById("qDate").value);
     textBox = "?date=";
     textBox += document.getElementById("qDate").value;
-    textBox += "&api_key=DEMO_KEY";
+    textBox += "&api_key=SXPXfC74bFcx0aEKS9C4YRXz1LsTLoRp5FFfHvck";
   }
   else {
    textBox = "?api_key=SXPXfC74bFcx0aEKS9C4YRXz1LsTLoRp5FFfHvck";
@@ -20,7 +20,6 @@ function getData() {
 
   var req = new XMLHttpRequest;
   req.open("GET", "https://api.nasa.gov/planetary/apod" + textBox, true);
-  //modify the above url
 
   req.addEventListener('load', function() {
     if (req.status >= 200 && req.status < 400) {
