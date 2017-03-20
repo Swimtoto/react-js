@@ -25,6 +25,9 @@ function getData() {
   req.addEventListener('load', function() {
     // We check if the request is correct or not
     if (req.status >= 200 && req.status < 400) {
+      // We display the content of the request in the console
+      console.log(req)
+
       var response = JSON.parse(req.responseText);
       if (response["media_type"] === "video") {
         var newVideo = document.createElement("iframe");
