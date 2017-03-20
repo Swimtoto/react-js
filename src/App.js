@@ -1,5 +1,5 @@
 var submitBtn = document.createElement("button");
-submitBtn.textContent = "Get Data";
+submitBtn.textContent = "Get Picture";
 submitBtn.addEventListener("click", getData);
 document.body.appendChild(submitBtn);
 
@@ -8,7 +8,8 @@ function getData() {
   resetData();
   var textBox = "";
 
-  if (document.getElementById("qDate").value.length != 0) {
+  // If the date is correct (ie right format yyyy-dd-mm)
+  if (document.getElementById("qDate").value.length !== 0) {
     console.log(document.getElementById("qDate").value);
     textBox = "?date=";
     textBox += document.getElementById("qDate").value;
@@ -18,10 +19,11 @@ function getData() {
    textBox = "?api_key=SXPXfC74bFcx0aEKS9C4YRXz1LsTLoRp5FFfHvck";
   }
 
-  var req = new XMLHttpRequest;
+  var req = new XMLHttpRequest();
   req.open("GET", "https://api.nasa.gov/planetary/apod" + textBox, true);
 
   req.addEventListener('load', function() {
+    // We check if the request is correct or not
     if (req.status >= 200 && req.status < 400) {
       var response = JSON.parse(req.responseText);
       if (response["media_type"] === "video") {
@@ -32,7 +34,7 @@ function getData() {
       } else {
         document.getElementById('pic').src = response["url"];
       }
-      //add additional code below this line to update the other fields
+
       document.getElementById('title').textContent = response["title"];
       document.getElementById('date').textContent = response["date"];
       document.getElementById('explanation').textContent = response["explanation"];
